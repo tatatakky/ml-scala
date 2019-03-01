@@ -1,21 +1,17 @@
 package com.github.tatatakky.ml.nn
 
-import scala.math.exp
-
 object FunctionTool {
 
   abstract trait Functions {
     def f(v: Double): Double
   }
 
-  class Sigmoid extends Functions {
-
+  case object Sigmoid extends Functions {
+    import scala.math.exp
     def f(v: Double): Double = 1/(1 + exp(-v))
-
   }
 
-  class Step extends Functions {
-
+  case object Step extends Functions {
     def f(v: Double): Double = {
       if(v >= 0) {
         1.0
@@ -25,5 +21,8 @@ object FunctionTool {
     }
   }
 
-
+  def functions(func: Functions)(u: Double): Double = func match {
+    case Sigmoid => func.f(u)
+    case Step    => func.f(u)
+  }
 }

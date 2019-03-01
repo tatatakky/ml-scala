@@ -1,8 +1,7 @@
 package com.github.tatatakky.ml.nn
 
-import com.github.tatatakky.ml.nn.FunctionTool.Functions
+import com.github.tatatakky.ml.nn.FunctionTool._
 
-import scala.math._
 import scala.io._
 
 object Nn {
@@ -19,15 +18,13 @@ object Nn {
 
   def theDataLength[T](data: List[List[T]]): Int = data.length
 
-  def sigmoid(u: Double): Double = 1/(1 + exp(-u))
-
   def forward(w: List[Double], data: List[Double]): Double = {
     var u: Double = 0.0
     for(x <- 0 until inputNum){
       u += data(x) * w(x)
     }
     u -= w(inputNum)
-    sigmoid(u)
+    functions(Sigmoid)(u)
   }
 
   def output(w: List[Double], data: List[List[Double]], dataLength: Int) = {
@@ -42,7 +39,7 @@ object Nn {
 
   def main(args: Array[String]): Unit = {
     val w: List[Double] = List(1.0, 1.0, 1.5)
-    val data: List[List[Double]] = readFileToList("/Users/kodai/scala/MachineLearning/src/main/scala/com/github/tatatakky/ml/nn/data24.txt")
+    val data: List[List[Double]] = readFileToList("path")
     val dataLength: Int = theDataLength(data)
     output(w, data, dataLength)
   }
