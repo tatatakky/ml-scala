@@ -1,20 +1,11 @@
 package com.github.tatatakky.ml.nn
 
 import com.github.tatatakky.ml.nn.FunctionTool._
-
-import scala.io._
+import com.github.tatatakky.ml.nn.FileRead._
 
 object Nn {
 
   val inputNum = 2
-
-  def readFileToList(e: String): List[List[Double]] = {
-    var a: List[List[Double]] = Nil
-    for (line <- Source.fromFile(e).getLines) {
-      a = line.split(" ").toList.map(f => f.toDouble) :: a
-    }
-    a.reverse
-  }
 
   def theDataLength[T](data: List[List[T]]): Int = data.length
 
@@ -39,7 +30,7 @@ object Nn {
 
   def main(args: Array[String]): Unit = {
     val w: List[Double] = List(1.0, 1.0, 1.5)
-    val data: List[List[Double]] = readFileToList("path")
+    val data: List[List[Double]] = readFileToList("/Users/kodai/scala/MachineLearning/src/main/scala/com/github/tatatakky/ml/nn/data24.txt")
     val dataLength: Int = theDataLength(data)
     output(w, data, dataLength)
   }
