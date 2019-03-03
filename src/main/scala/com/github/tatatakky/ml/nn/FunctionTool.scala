@@ -25,4 +25,9 @@ object FunctionTool {
     case Sigmoid => func.f(u)
     case Step    => func.f(u)
   }
+
+  def selectFunctions(num: String): Functions = num match {
+    case "1" => Sigmoid
+    case "2" => Step
+  }
 }

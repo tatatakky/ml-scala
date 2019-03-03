@@ -1,6 +1,5 @@
 package com.github.tatatakky.ml.nn
 import scala.io.Source
-
 object FileRead {
   def readFileToList(e: String): List[List[Double]] = {
     var a: List[List[Double]] = Nil
